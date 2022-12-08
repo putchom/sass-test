@@ -1,0 +1,9 @@
+@use "./functions";
+@use "@gyugyu/assert-sass" as assert;
+
+@function test-sum() {
+  @return assert.equals(
+    functions.sum($a: 2, $b: 3),
+    5
+  );
+}

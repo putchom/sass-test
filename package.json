@@ -1,0 +1,14 @@
+{
+  "name": "sass-test",
+  "version": "1.0.0",
+  "description": "Sass test",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/putchom/sass-test.git"
+  },
+  "devDependencies": {
+    "@gyugyu/assert-sass": "^0.1.2",
+    "@gyugyu/sassunit": "^0.2.0",
+    "sass": "^1.56.1"
+  }
+}
