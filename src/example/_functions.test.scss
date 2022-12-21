@@ -35,7 +35,3 @@
     false
   );
 }
-
-@function test-a() {
-  @return assert.contains-all-keys(("primary": #000000, "secondary": #000000), (primary, secondary, tertiary));
-}
