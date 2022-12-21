@@ -1,9 +1,41 @@
 @use "./functions";
 @use "@gyugyu/assert-sass" as assert;
 
-@function test-sum() {
+@function test-is-hex-color() {
   @return assert.equals(
-    functions.sum($a: 2, $b: 3),
-    5
+    functions.is-hex-color('#a9d3dc'),
+    true
   );
+}
+
+@function test-is-not-hex-color() {
+  @return assert.equals(
+    functions.is-hex-color('a9d3dc'),
+    false
+  );
+}
+
+@function test-is-not-hex-color-when-too-many-digits() {
+  @return assert.equals(
+    functions.is-hex-color('#a9d3dc00000000000000'),
+    false
+  );
+}
+
+@function test-is-not-hex-color-when-few-digits() {
+  @return assert.equals(
+    functions.is-hex-color('#a9'),
+    false
+  );
+}
+
+@function test-is-not-hex-color-when-japanese-chars() {
+  @return assert.equals(
+    functions.is-hex-color('#ああああああ'),
+    false
+  );
+}
+
+@function test-a() {
+  @return assert.contains-all-keys(("primary": #000000, "secondary": #000000), (primary, secondary, tertiary));
 }

@@ -1,3 +1,29 @@
-@function sum($a, $b) {
-  @return $a + $b;
+@use "sass:string";
+@use "sass:list";
+
+@function is-hex-color($value) {
+  $length: string.length("#{$value}");
+  $available-hex-chars: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a",
+  "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F";
+
+  // 先頭の文字列が # でないかチェックする
+  @if string.slice("#{$value}", 1, 1) != "#" {
+    @return false;
+  }
+
+  // 文字数が # を含めて正しい桁数になっているかをチェックする
+  @if $length != 4 and $length != 7 and $length != 9 {
+    @return false;
+  }
+
+  // Hex colorで利用できる文字で構成されているかチェックする
+  @for $i from 2 through $length {
+    $char: string.slice("#{$value}", $i, $i);
+
+    @if list.index($available-hex-chars, $char) == null {
+      @return false;
+    }
+  }
+
+  @return true;
 }
